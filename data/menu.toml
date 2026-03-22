@@ -1,0 +1,11 @@
+[[entries]]
+title = "links"
+[[entries.entries]]
+title = "<a href='https://github.com/frapaparatto'>github</a>"
+[[entries.entries]]
+title = "<a href='https://www.linkedin.com/in/francesco-paparatto/'>linkedin</a>"
+
+[[entries]]
+title = "posts"
+[entries.post_list]
+  limit = 20
