@@ -1,27 +1,71 @@
-baseURL = "https://frapaparatto.github.io"
-languageCode = "en-us"
-title = "Francesco"
-theme = "nostyleplease"
+baseURL = "https://frapaparatto.dev"
+defaultContentLanguage = "en-gb"
+enableEmoji = true
+
+theme = "hugo-blog-awesome"
+
+[services]
+  [services.googleAnalytics]
+    id = ''
 
 [markup]
-  [markup.goldmark]
-    [markup.goldmark.parser]
-      [markup.goldmark.parser.attribute]
-        block = true
-        title = true
   [markup.highlight]
-    codeFences = true
-    lineNos = false
-    style = "rrt"
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
   [markup.tableOfContents]
     startLevel = 2
-    endLevel = 3
+    endLevel = 4
     ordered = false
 
-[params]
-  [params.theme_config]
-    appearance = "auto"
-    back_home_text = ".."
-    date_format = "2006-01-02"
-    isListGroupByDate = false
-    isShowFooter = true
+[Languages.en-gb]
+  languageName = "English"
+  languageCode = "en-gb"
+  contentDir = "content/en"
+  weight = 1
+
+  [Languages.en-gb.menu]
+  [[Languages.en-gb.menu.main]]
+    pageRef = "/"
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[Languages.en-gb.menu.main]]
+    pageRef = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 20
+  [[Languages.en-gb.menu.main]]
+    pageRef = "pages/about"
+    name = "About"
+    url = "/pages/about/"
+    weight = 30
+
+[Languages.en-gb.params]
+  sitename = "Francesco Paparatto"
+  defaultColor = "auto"
+  description = "Personal blog about software, tech, and things I find interesting."
+  mainSections = ["posts"]
+  toc = true
+  tocOpen = false
+  goToTop = true
+  dateFormat = "2 Jan 2006"
+  rssFeedDescription = "summary"
+
+[Languages.en-gb.params.author]
+  avatar = "blog-photo.jpg"
+  intro = "Francesco Paparatto"
+  name = "Francesco Paparatto"
+  description = "Software engineer writing about tech, code, and things I find interesting."
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/frapaparatto"
+
+[[params.socialIcons]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/francesco-paparatto/"
+
+[[params.socialIcons]]
+name = "rss"
+url = "/index.xml"
