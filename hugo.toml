@@ -50,7 +50,7 @@ theme = "hugo-blog-awesome"
   tocOpen = false
   goToTop = true
   dateFormat = "2 Jan 2006"
-  rssFeedDescription = "summary"
+  rssFeedDescription = "full"
 
 [Languages.en-gb.params.author]
   avatar = "https://res.cloudinary.com/dsolzecrx/image/upload/v1778184276/blog-photo_xjovh1.jpg"
