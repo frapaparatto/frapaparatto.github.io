@@ -53,7 +53,7 @@ theme = "hugo-blog-awesome"
   rssFeedDescription = "summary"
 
 [Languages.en-gb.params.author]
-  avatar = "blog-photo.jpg"
+  avatar = "https://res.cloudinary.com/dsolzecrx/image/upload/v1778184276/blog-photo_xjovh1.jpg"
   intro = "Francesco Paparatto"
   name = "Francesco Paparatto"
   description = "Software engineer writing about tech, code, and things I find interesting."
