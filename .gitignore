@@ -1,3 +1,4 @@
 public/
 resources/_gen/
-assets/blog-photo.jpg
+.hugo_build.lock
+.DS_Store
