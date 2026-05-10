@@ -10,6 +10,6 @@ I care about architecture, correctness, performance, and clean dependency design
 
 ## Currently working on
 
-**cpp-crm**: A C++ CRM written from scratch: layered architecture with strict inward-only dependency direction, UUID v4 surrogate keys, pipe-delimited CSV persistence with in-memory working state, and a background auto-save thread using std::thread. No frameworks, no shortcuts. [GitHub](https://github.com/frapaparatto/cpp-crm)
-
+- **[cpp-crm](https://github.com/frapaparatto/cpp-crm)**: CRM written in modern C++.
+  Layered architecture, strict dependency direction, UUID keys, file persistence, in-memory state, and background auto-save via multithreading.
 
