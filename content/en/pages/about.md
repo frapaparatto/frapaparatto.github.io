@@ -3,8 +3,10 @@ title: "About"
 draft: false
 toc: false
 ---
+I’m a self-taught software engineer focused on backend and infrastructure.
+I study CS fundamentals and build systems from scratch to understand how software works at a deeper level.
 
-Dropped out of college. Teaching myself software engineering, focusing on backend and infrastructure. I balance CS fundamentals with projects that develop strong engineering skills, not only from a code perspective but also from a systems thinking point of view. I build things from scratch because that is the only way I know how to truly understand them.
+I care about architecture, correctness, performance, and clean dependency design.
 
 ## Currently working on
 
