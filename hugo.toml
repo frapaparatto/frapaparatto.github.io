@@ -8,9 +8,9 @@ pygmentsUseClasses = true
 
 [params]
   description = "Personal blog about software, tech, and things I find interesting."
-  copyright = "Copyright © 2025 Francesco Paparatto"
   dark = "auto"
   highlight = true
+  mainSections = ["posts"]
 
 [menu]
   [[menu.main]]
