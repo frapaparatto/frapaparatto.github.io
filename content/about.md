@@ -9,5 +9,5 @@ I care about architecture, correctness, performance, and clean dependency design
 
 ## currently working on
 
-- **[cpp-crm](https://github.com/frapaparatto/cpp-crm)**: CRM written in modern C++.
+- **[poliz](https://github.com/frapaparatto/cpp-crm)**: CRM written in modern C++.
   Layered architecture, strict dependency direction, UUID keys, file persistence, in-memory state, and background auto-save via multithreading.
