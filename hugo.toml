@@ -1,5 +1,5 @@
 baseURL = "https://frapaparatto.dev"
-title = "Francesco Paparatto"
+title = "Fra's Blog"
 theme = "etch"
 languageCode = "en-US"
 enableInlineShortcodes = true
