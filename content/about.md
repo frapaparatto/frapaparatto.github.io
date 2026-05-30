@@ -2,12 +2,10 @@
 title: "about"
 layout: "about"
 ---
-I'm a self-taught software engineer focused on backend and infrastructure.
-I study CS fundamentals and build systems from scratch to understand how software works at a deeper level.
+Just a guy who teaches himself programming, loves understanding how things work at a deeper level, and cares about performance and good code.
 
-I care about architecture, correctness, performance, and clean dependency design.
+### things I'm working on
 
-## currently working on
-
-- **[poliz](https://github.com/frapaparatto/cpp-crm)**: CRM written in modern C++.
-  Layered architecture, strict dependency direction, UUID keys, file persistence, in-memory state, and background auto-save via multithreading.
+- **[poliz](https://github.com/frapaparatto/cpp-crm)**: a working C++ console CRM application with clean layered architecture, modern C++ idioms, threading (auto-save), and file I/O
+- Exploring the open source world, finding interesting projects to contribute to
+- Learning Go
