@@ -13,6 +13,8 @@ Topics come from whatever I genuinely find interesting, things I've studied and 
 
 You'll also find occasional updates on what I'm building and what's next.
 ### things I'm working on
-- **<a href="https://github.com/frapaparatto/cpp-crm" target="_blank" rel="noopener noreferrer">poliz</a>**: a working C++ console CRM application with clean layered architecture, modern C++ idioms, threading (auto-save), and file I/O
 - Exploring the open source world, finding interesting projects to contribute to
-- Learning Go
+- [pgqueue](https://github.com/frapaparatto/pgqueue), a Postgres-backed job queue library in Go
+### currently reading
+- Learning Go, Jon Bodner
+- A Philosophy of Software Design, John Ousterhout
