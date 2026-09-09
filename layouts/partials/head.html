@@ -1,4 +1,16 @@
 <head>
+    {{ if eq (.Site.Params.dark | default "auto") "auto" -}}
+    <script>
+    (function() {
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light" || t === "dark") {
+                document.documentElement.setAttribute("data-theme", t);
+            }
+        } catch (e) {}
+    })();
+    </script>
+    {{ end -}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ with .Site.Params.description -}}
@@ -18,6 +30,10 @@
     {{ $dark := .Site.Params.dark | default "auto" -}}
     {{ if not (eq $dark "off") -}}
         {{ $resources = $resources | append (resources.Get "css/dark.css" | resources.ExecuteAsTemplate "dark.css" .) -}}
+    {{ end -}}
+
+    {{ if eq $dark "auto" -}}
+        {{ $resources = $resources | append (resources.Get "css/theme-toggle.css") -}}
     {{ end -}}
 
     {{ if .Site.Params.highlight -}}
