@@ -1,17 +1,16 @@
 {{ $menuLength := len .Site.Menus.main }}
-{{/* Build a shell-prompt style title, e.g. "fra@dev:~$" on the home page
-     and "fra@dev:~/posts$" on the posts section, "fra@dev:~/about$" on
-     the about page, etc. Derived from the site title "fra@dev:~$" plus
-     the current page's URL path. */}}
-{{ $promptPrefix := strings.TrimSuffix "~$" .Site.Title }}
-{{ $promptPath := "~" }}
+{{/* Build a shell-prompt style title: the site title "fra@dev:~#" acts as
+     the prompt, followed by a space and the path being "run", e.g.
+     "fra@dev:~# blog/" on the home page, "fra@dev:~# blog/posts/" on the
+     posts section, "fra@dev:~# blog/about/" on the about page, etc. */}}
+{{ $promptPath := "blog" }}
 {{ if not .IsHome }}
   {{ $rel := strings.TrimSuffix "/" (strings.TrimPrefix "/" .RelPermalink) }}
   {{ if $rel }}
-    {{ $promptPath = printf "~/%s" $rel }}
+    {{ $promptPath = printf "blog/%s" $rel }}
   {{ end }}
 {{ end }}
-{{ $promptTitle := printf "%s%s$" $promptPrefix $promptPath }}
+{{ $promptTitle := printf "%s %s/" .Site.Title $promptPath }}
 <header>
   <p style="padding: 0;margin: 0;">
     <a href="{{ .Site.BaseURL }}">
