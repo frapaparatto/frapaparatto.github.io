@@ -10,7 +10,7 @@ pygmentsUseClasses = true
   name = "Francesco Paparatto"
 
 [params]
-  description = "Personal blog about software, tech, and things I find interesting."
+  description = "Personal blog about software, tech and things I find interesting."
   dark = "auto"
   highlight = true
   mainSections = ["posts"]

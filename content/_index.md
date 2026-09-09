@@ -1,4 +1,4 @@
 ---
 title: "Home"
 ---
-Self-taught software engineer focused on backend and infrastructure
+_Personal blog about software, tech and things I find interesting._
