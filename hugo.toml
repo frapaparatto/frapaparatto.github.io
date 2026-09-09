@@ -1,22 +1,28 @@
 baseURL = "https://frapaparatto.dev"
 title = "Fra blog"
-theme = "etch"
+theme = "maverick"
 languageCode = "en-US"
 enableInlineShortcodes = true
 pygmentsCodeFences = true
 pygmentsUseClasses = true
+
+[author]
+  name = "Francesco Paparatto"
 
 [params]
   description = "Personal blog about software, tech, and things I find interesting."
   dark = "auto"
   highlight = true
   mainSections = ["posts"]
+  logo = "/assets/favicon.ico"
+  author = "Francesco Paparatto"
+  items = 10
 
 [menu]
   [[menu.main]]
     identifier = "posts"
     name = "posts"
-    url = "/"
+    url = "/posts/"
     weight = 10
   [[menu.main]]
     identifier = "about"
@@ -26,6 +32,18 @@ pygmentsUseClasses = true
 
 [permalinks]
   posts = "/:title/"
+  pages = "/:slug/"
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[markup.highlight]
+  noClasses = true
+  style = "monokailight"
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML"]

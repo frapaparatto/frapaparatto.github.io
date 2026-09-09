@@ -1,5 +1,6 @@
 ---
-layout: "About"
+title: "About"
+author: "Francesco Paparatto"
 ---
 Just a guy who teaches himself programming, loves understanding how things work at a deeper level, and cares about performance and good code.
 ### links
