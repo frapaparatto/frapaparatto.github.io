@@ -29,6 +29,26 @@ pygmentsUseClasses = true
     name = "about"
     url = "/about/"
     weight = 20
+  [[menu.main]]
+    identifier = "til"
+    name = "til"
+    url = "/til/"
+    weight = 30
+  [[menu.main]]
+    identifier = "log"
+    name = "log"
+    url = "/log/"
+    weight = 40
+  [[menu.main]]
+    identifier = "projects"
+    name = "projects"
+    url = "/projects/"
+    weight = 50
+  [[menu.main]]
+    identifier = "cheatsheets"
+    name = "cheatsheets"
+    url = "/cheatsheets/"
+    weight = 60
 
 [permalinks]
   posts = "/:title/"
