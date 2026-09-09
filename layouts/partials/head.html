@@ -1,0 +1,154 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - {{ .Site.BaseURL }}">
+    <title>{{ if eq .IsHome true }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ if ne .Description "" }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    {{ template "_internal/opengraph.html" . }}
+    {{ template "_internal/schema.html" . }}
+    {{ template "_internal/google_analytics.html" . }}
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/atom.xml" />
+    <link rel="alternate" type="application/json" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/feed.json" />
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
+    {{ $styles := resources.Get "scss/styles.scss" | toCSS (dict "outputStyle" "compressed") | minify }}
+    <style>{{ $styles.Content | safeCSS }}</style>
+    <style>
+      /* Instead of collapsing into a hamburger dropdown on narrow screens,
+         keep the nav inline and let it shrink toward the site title. */
+      header .burger { display: none; }
+      header .nav-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        padding: 0;
+        right: auto;
+        flex-shrink: 0;
+      }
+      /* Plain inline text flow (not nested flexbox) so the browser's
+         size calculation stays unambiguous: it wraps like a line of text. */
+      header .nav-menu ul {
+        width: auto;
+      }
+      header .nav-menu ul li {
+        display: inline;
+        font-size: inherit;
+        border-bottom: none;
+        height: auto;
+      }
+      /* Explicit spacing between entries — the HTML output has no
+         whitespace between <li>s (minified), so don't rely on that. */
+      header .nav-menu ul li + li { margin-left: 0.6em; }
+      header ul li a { font-size: clamp(0.8rem, 2.5vw, 1rem); }
+      /* No left padding on the first link: the header's own `gap` (below)
+         already spaces title and nav apart when they share a line, and
+         this padding would otherwise show up as a stray indent once nav
+         wraps onto its own line under the title. */
+      header ul a:first-child { padding-left: 0; }
+      /* If title + nav can no longer fit on one line (very narrow screen,
+         or many menu entries), drop the whole nav to its own row below the
+         title, flush with its left edge, instead of squeezing it down.
+         The nav's own text wrap above is then just a safety net for when
+         even a full-width row isn't enough. A `gap` on the header also
+         guarantees title and nav never touch when they do share a line. */
+      header {
+        flex-wrap: wrap;
+        gap: 0.3rem 0.75rem;
+      }
+    </style>
+
+    {{ if .IsHome -}}
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "name": "{{ .Site.Title }}",
+        "url": "{{ .Site.BaseURL }}",
+        "description": "{{ .Site.Params.description }}",
+        "thumbnailUrl": "{{ .Site.Params.Logo | absURL }}",
+        "license": "{{ .Site.Params.Copyright }}"
+    }
+    </script>
+    {{ else if .IsPage }}
+    {{ $author :=  or (.Params.author) (.Site.Author.name) }}
+    {{ $org_name :=  .Site.Title }}
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "{{ .Section }}",
+        "name": "{{ .Title | safeJS }}",
+        "headline": "{{ .Title | safeJS }}",
+        "alternativeHeadline": "{{ .Params.lead }}",
+        "description": "{{ if .Description }}{{ .Description | safeJS }}{{ else }}{{if .IsPage}}{{ .Summary  }}{{ end }}{{ end }}",
+        "inLanguage": {{ .Site.LanguageCode | default "en-us" }},
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ .Permalink }}"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "{{ $author }}"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "{{ $author }}"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "{{ $author }}"
+        },
+        "copyrightHolder" : "{{ $org_name }}",
+        "copyrightYear" : "{{ .Date.Format "2006" }}",
+        "dateCreated": "{{ .Date.Format "2006-01-02T15:04:05.00Z" | safeHTML }}",
+        "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05.00Z" | safeHTML }}",
+        "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05.00Z" | safeHTML }}",
+        "publisher":{
+            "@type":"Organization",
+            "name": {{ $org_name }},
+            "url": {{ .Site.BaseURL }},
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ .Site.Params.logo | absURL }}",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": {{ if .Params.images }}[{{ range $i, $e := .Params.images }}{{ if $i }}, {{ end }}{{ $e | absURL }}{{ end }}]{{ else}}{{.Site.Params.logo | absURL }}{{ end }},
+        "url" : "{{ .Permalink }}",
+        "wordCount" : "{{ .WordCount }}",
+        "genre" : [ {{ range $index, $tag := .Params.tags }}{{ if $index }}, {{ end }}"{{ $tag }}" {{ end }}],
+        "keywords" : [ {{ range $index, $tag := .Params.tags }}{{ if $index }}, {{ end }}"{{ $tag }}" {{ end }}]
+    }
+    </script>
+    {{ end }}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-menu');
+            const header = document.querySelector('header');
+
+            if (burger) {
+                burger.addEventListener('click', () => {
+                    nav.classList.toggle('active');
+                    header.classList.toggle('menu-open');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!header.contains(e.target) && nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        header.classList.remove('menu-open');
+                    }
+                });
+            }
+        });
+    </script>
+  </head>
