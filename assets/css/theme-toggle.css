@@ -4,8 +4,6 @@ header button#theme-toggle {
     border: none;
     cursor: pointer;
     padding: 0;
-    margin-left: 8px;
-    vertical-align: middle;
     line-height: 1;
 }
 
