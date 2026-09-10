@@ -1,150 +1,96 @@
+{{- /* Rosé Pine (dark) / Rosé Pine Dawn (light) — same palette as syntax.css. */ -}}
 {{ $dark := .Site.Params.dark | default "auto" -}}
 {{ if eq $dark "on" -}}
-html {
-    scrollbar-color: #6c6c6c #2e2e2e;
-}
-
-body {
-    color: #ebebeb;
-    background: #121212;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-header#banner a {
-    color: #e0e0e0;
-    text-decoration: none;
-}
-
-header#banner nav ul li a {
-    color: #cccccc;
-}
-
-main#content a {
-    color: #00b1ed;
-}
-
-main#content p {
-    color: #f5f5f5;
-}
-
-main#content hr {
-    background: #5c5c5c;
-}
-
-main#content #toc h4 {
-    color: #d4d4d4;
-}
-
-main#content ul#posts small {
-    color: #a7a7a7;
-}
-
-main#content ul#posts li a:hover {
-    color: #21c7ff;
-}
-
-main#content header#post-header div {
-    color: #a7a7a7;
+:root {
+    --bg: #191724;
+    --fg: #e0def4;
+    --muted: #6e6a86;
+    --border: #403d52;
+    --code-bg: #1f1d2e;
+    --table-header-bg: #26233a;
+    --scrollbar-thumb: #6c6c6c;
+    --scrollbar-track: #26233a;
 }
 {{ else if eq $dark "auto" -}}
+:root {
+    --bg: #faf4ed;
+    --fg: #575279;
+    --muted: #9893a5;
+    --border: #dfdad9;
+    --code-bg: #fffaf3;
+    --table-header-bg: #f2e9e1;
+    --scrollbar-thumb: #9893a5;
+    --scrollbar-track: #f2e9e1;
+}
+
 /* System preference, unless the visitor picked light explicitly via the toggle. */
 @media (prefers-color-scheme: dark) {
-html:not([data-theme="light"]) {
-    scrollbar-color: #6c6c6c #2e2e2e;
-}
-
-html:not([data-theme="light"]) body {
-    color: #ebebeb;
-    background: #121212;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-html:not([data-theme="light"]) header#banner a {
-    color: #e0e0e0;
-    text-decoration: none;
-}
-
-html:not([data-theme="light"]) header#banner nav ul li a {
-    color: #cccccc;
-}
-
-html:not([data-theme="light"]) main#content a {
-    color: #00b1ed;
-}
-
-html:not([data-theme="light"]) main#content p {
-    color: #f5f5f5;
-}
-
-html:not([data-theme="light"]) main#content hr {
-    background: #5c5c5c;
-}
-
-html:not([data-theme="light"]) main#content #toc h4 {
-    color: #d4d4d4;
-}
-
-html:not([data-theme="light"]) main#content ul#posts small {
-    color: #a7a7a7;
-}
-
-html:not([data-theme="light"]) main#content ul#posts li a:hover {
-    color: #21c7ff;
-}
-
-html:not([data-theme="light"]) main#content header#post-header div {
-    color: #a7a7a7;
-}
+    html:not([data-theme="light"]) {
+        --bg: #191724;
+        --fg: #e0def4;
+        --muted: #6e6a86;
+        --border: #403d52;
+        --code-bg: #1f1d2e;
+        --table-header-bg: #26233a;
+        --scrollbar-thumb: #6c6c6c;
+        --scrollbar-track: #26233a;
+    }
 }
 
 /* Explicit choice via the toggle, regardless of system preference. */
 html[data-theme="dark"] {
-    scrollbar-color: #6c6c6c #2e2e2e;
-}
-
-html[data-theme="dark"] body {
-    color: #ebebeb;
-    background: #121212;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-html[data-theme="dark"] header#banner a {
-    color: #e0e0e0;
-    text-decoration: none;
-}
-
-html[data-theme="dark"] header#banner nav ul li a {
-    color: #cccccc;
-}
-
-html[data-theme="dark"] main#content a {
-    color: #00b1ed;
-}
-
-html[data-theme="dark"] main#content p {
-    color: #f5f5f5;
-}
-
-html[data-theme="dark"] main#content hr {
-    background: #5c5c5c;
-}
-
-html[data-theme="dark"] main#content #toc h4 {
-    color: #d4d4d4;
-}
-
-html[data-theme="dark"] main#content ul#posts small {
-    color: #a7a7a7;
-}
-
-html[data-theme="dark"] main#content ul#posts li a:hover {
-    color: #21c7ff;
-}
-
-html[data-theme="dark"] main#content header#post-header div {
-    color: #a7a7a7;
+    --bg: #191724;
+    --fg: #e0def4;
+    --muted: #6e6a86;
+    --border: #403d52;
+    --code-bg: #1f1d2e;
+    --table-header-bg: #26233a;
+    --scrollbar-thumb: #6c6c6c;
+    --scrollbar-track: #26233a;
 }
 {{ end -}}
+
+html {
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+}
+
+header .burger span {
+    background: var(--fg);
+}
+
+header .nav-menu {
+    background: var(--bg);
+}
+
+code, pre {
+    background: var(--code-bg);
+}
+
+blockquote {
+    border-left-color: var(--border);
+}
+
+.meta, .index-date {
+    color: var(--muted);
+}
+
+.hr-list {
+    border-bottom-color: var(--border);
+}
+
+th {
+    background-color: var(--table-header-bg);
+}
+
+th, td {
+    border-color: var(--border);
+}
+
+.skip-link {
+    background: var(--code-bg);
+}

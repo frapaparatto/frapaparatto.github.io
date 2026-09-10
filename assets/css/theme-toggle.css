@@ -1,4 +1,4 @@
-header#banner button#theme-toggle {
+header button#theme-toggle {
     color: inherit;
     background: none;
     border: none;
@@ -9,12 +9,12 @@ header#banner button#theme-toggle {
     line-height: 1;
 }
 
-header#banner button#theme-toggle svg {
+header button#theme-toggle svg {
     display: block;
     width: 16px;
     height: 16px;
 }
 
-header#banner button#theme-toggle svg[hidden] {
+header button#theme-toggle svg[hidden] {
     display: none;
 }

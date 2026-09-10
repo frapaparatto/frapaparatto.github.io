@@ -58,8 +58,8 @@ pygmentsUseClasses = true
   unsafe = true
 
 [markup.highlight]
-  noClasses = true
-  style = "monokailight"
+  noClasses = false
+  style = "rose-pine-dawn"
 
 [taxonomies]
   tag = "tags"

@@ -1,4 +1,16 @@
 <head>
+    {{ if eq (.Site.Params.dark | default "auto") "auto" -}}
+    <script>
+    (function() {
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light" || t === "dark") {
+                document.documentElement.setAttribute("data-theme", t);
+            }
+        } catch (e) {}
+    })();
+    </script>
+    {{ end -}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +29,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
     {{ $styles := resources.Get "scss/styles.scss" | toCSS (dict "outputStyle" "compressed") | minify }}
     <style>{{ $styles.Content | safeCSS }}</style>
+    {{ $dark := .Site.Params.dark | default "auto" -}}
+    {{ if ne $dark "off" -}}
+    {{ $darkCSS := resources.Get "css/dark.css" | resources.ExecuteAsTemplate "css/dark.css" . }}
+    <style>{{ $darkCSS.Content | safeCSS }}</style>
+    {{ end -}}
+    {{ if eq $dark "auto" -}}
+    {{ $toggleCSS := resources.Get "css/theme-toggle.css" }}
+    <style>{{ $toggleCSS.Content | safeCSS }}</style>
+    {{ end -}}
+    {{ if .Site.Params.highlight -}}
+    {{ $syntaxCSS := resources.Get "css/syntax.css" }}
+    <style>{{ $syntaxCSS.Content | safeCSS }}</style>
+    {{ end -}}
     <style>
       /* Instead of collapsing into a hamburger dropdown on narrow screens,
          keep the nav inline and let it shrink toward the site title. */
