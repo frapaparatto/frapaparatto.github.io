@@ -85,6 +85,11 @@
         flex-wrap: wrap;
         gap: 0.3rem 0.75rem;
       }
+      /* The theme forces overflow-x: scroll on <pre>, so every code block
+         shows a horizontal scrollbar track even when nothing overflows —
+         a persistent thin rectangle under blocks that fit. Only scroll
+         when a line actually needs it. */
+      pre { overflow-x: auto; }
     </style>
 
     {{ if .IsHome -}}
