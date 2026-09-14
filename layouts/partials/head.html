@@ -90,6 +90,12 @@
          a persistent thin rectangle under blocks that fit. Only scroll
          when a line actually needs it. */
       pre { overflow-x: auto; }
+      /* One size down from the theme's 16px base, and a narrower reading
+         column for a tighter, more editorial feel — inspired by
+         cursor.com/blog and darioamodei.com, which center a narrow column
+         and keep body text left-aligned within it (not text-align: center). */
+      body { font-size: 15px; }
+      .content { max-width: 60ch; }
     </style>
 
     {{ if .IsHome -}}
