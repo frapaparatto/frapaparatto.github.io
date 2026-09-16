@@ -43,6 +43,24 @@
     <style>{{ $syntaxCSS.Content | safeCSS }}</style>
     {{ end -}}
     <style>
+      /* JetBrains Mono for code, tried against the site's own Bricolage
+         Grotesque body font. Font files already existed in static/fonts/
+         but weren't wired up to any font-family before this. */
+      @font-face {
+        font-family: "JetBrains Mono";
+        src: url("/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        src: url("/fonts/JetBrainsMono-Bold.woff2") format("woff2");
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+      }
+      code, pre { font-family: "JetBrains Mono", monospace; }
       /* Instead of collapsing into a hamburger dropdown on narrow screens,
          keep the nav inline and let it shrink toward the site title. */
       header .burger { display: none; }
