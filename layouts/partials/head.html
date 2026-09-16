@@ -26,7 +26,6 @@
     <link rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/atom.xml" />
     <link rel="alternate" type="application/json" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}/feed.json" />
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
     {{ $styles := resources.Get "scss/styles.scss" | toCSS (dict "outputStyle" "compressed") | minify }}
     <style>{{ $styles.Content | safeCSS }}</style>
     {{ $dark := .Site.Params.dark | default "auto" -}}
@@ -43,9 +42,8 @@
     <style>{{ $syntaxCSS.Content | safeCSS }}</style>
     {{ end -}}
     <style>
-      /* JetBrains Mono for code, tried against the site's own Bricolage
-         Grotesque body font. Font files already existed in static/fonts/
-         but weren't wired up to any font-family before this. */
+      /* JetBrains Mono kept as a local fallback if the Iosevka CDN below
+         is unreachable. Font files already existed in static/fonts/. */
       @font-face {
         font-family: "JetBrains Mono";
         src: url("/fonts/JetBrainsMono-Regular.woff2") format("woff2");
@@ -60,7 +58,51 @@
         font-style: normal;
         font-display: swap;
       }
-      code, pre { font-family: "JetBrains Mono", monospace; }
+      /* Iosevka — same font os.phil-opp.com uses for code, hosted on the
+         Fontsource/jsdelivr CDN rather than downloaded into the repo. */
+      @font-face {
+        font-family: "Iosevka";
+        src: url("https://cdn.jsdelivr.net/fontsource/fonts/iosevka@5.3.0/latin-400-normal.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Iosevka";
+        src: url("https://cdn.jsdelivr.net/fontsource/fonts/iosevka@5.3.0/latin-700-normal.woff2") format("woff2");
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+      }
+      code, pre { font-family: "Iosevka", "JetBrains Mono", monospace; }
+      /* Shell-prompt header title stays monospace to match the terminal
+         conceit ("fra@dev:~# blog/"); the nav keeps the body sans font. */
+      header p { font-family: "Iosevka", "JetBrains Mono", monospace; }
+      /* System sans stack instead of a webfont. */
+      body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+      /* Full-bleed header bar (edge-to-edge on the viewport, not confined
+         to the narrow `.content` column), with its content kept in a
+         max-width box centered on the page — so the title and the theme
+         toggle don't sit flush against the raw viewport edges on wide
+         screens. */
+      header {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 1.25rem clamp(1rem, 5vw, 2rem);
+        margin: -2rem 0 1rem;
+        display: block;
+      }
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.3rem 0.75rem;
+        max-width: 960px;
+        margin: 0 auto;
+      }
       /* Instead of collapsing into a hamburger dropdown on narrow screens,
          keep the nav inline and let it shrink toward the site title. */
       header .burger { display: none; }
@@ -93,16 +135,6 @@
          this padding would otherwise show up as a stray indent once nav
          wraps onto its own line under the title. */
       header ul a:first-child { padding-left: 0; }
-      /* If title + nav can no longer fit on one line (very narrow screen,
-         or many menu entries), drop the whole nav to its own row below the
-         title, flush with its left edge, instead of squeezing it down.
-         The nav's own text wrap above is then just a safety net for when
-         even a full-width row isn't enough. A `gap` on the header also
-         guarantees title and nav never touch when they do share a line. */
-      header {
-        flex-wrap: wrap;
-        gap: 0.3rem 0.75rem;
-      }
       /* The theme forces overflow-x: scroll on <pre>, so every code block
          shows a horizontal scrollbar track even when nothing overflows —
          a persistent thin rectangle under blocks that fit. Only scroll
@@ -114,6 +146,13 @@
          and keep body text left-aligned within it (not text-align: center). */
       body { font-size: 15px; }
       .content { max-width: 60ch; }
+      /* Section description (the italic intro from each section's
+         _index.md) centered like brandur.org's homepage intro, instead of
+         left-aligned — the list/post content that follows stays untouched. */
+      .content > p,
+      .content section > p:first-child {
+        text-align: center;
+      }
     </style>
 
     {{ if .IsHome -}}
