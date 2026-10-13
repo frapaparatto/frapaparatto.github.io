@@ -1,52 +1,53 @@
-{{- /* Rosé Pine (dark) / Rosé Pine Dawn (light) — same palette as syntax.css. */ -}}
+{{- /* Warm neutrals, light after cursor.com/blog, dark as its counterpart. */ -}}
 {{ $dark := .Site.Params.dark | default "auto" -}}
 {{ if eq $dark "on" -}}
 :root {
-    --bg: #191724;
-    --fg: #e0def4;
-    --muted: #6e6a86;
-    --border: #403d52;
-    --code-bg: #1f1d2e;
-    --table-header-bg: #26233a;
+    --bg: #1b1a17;
+    --fg: #e8e7e2;
+    --muted: #8e8d87;
+    --border: #2f2e2a;
+    --code-bg: #23221f;
+    --table-header-bg: #2a2925;
     --scrollbar-thumb: #6c6c6c;
-    --scrollbar-track: #26233a;
+    --scrollbar-track: #23221f;
 }
 {{ else if eq $dark "auto" -}}
+/* Light: warm neutrals after cursor.com/blog (muted/border are the fg at 50%/10%, flattened). */
 :root {
-    --bg: #faf4ed;
-    --fg: #575279;
-    --muted: #9893a5;
-    --border: #dfdad9;
-    --code-bg: #fffaf3;
-    --table-header-bg: #f2e9e1;
-    --scrollbar-thumb: #9893a5;
-    --scrollbar-track: #f2e9e1;
+    --bg: #f7f7f4;
+    --fg: #26251e;
+    --muted: #8e8e89;
+    --border: #e2e2df;
+    --code-bg: #f2f1ed;
+    --table-header-bg: #ebeae5;
+    --scrollbar-thumb: #8e8e89;
+    --scrollbar-track: #f2f1ed;
 }
 
 /* System preference, unless the visitor picked light explicitly via the toggle. */
 @media (prefers-color-scheme: dark) {
     html:not([data-theme="light"]) {
-        --bg: #191724;
-        --fg: #e0def4;
-        --muted: #6e6a86;
-        --border: #403d52;
-        --code-bg: #1f1d2e;
-        --table-header-bg: #26233a;
+        --bg: #1b1a17;
+        --fg: #e8e7e2;
+        --muted: #8e8d87;
+        --border: #2f2e2a;
+        --code-bg: #23221f;
+        --table-header-bg: #2a2925;
         --scrollbar-thumb: #6c6c6c;
-        --scrollbar-track: #26233a;
+        --scrollbar-track: #23221f;
     }
 }
 
 /* Explicit choice via the toggle, regardless of system preference. */
 html[data-theme="dark"] {
-    --bg: #191724;
-    --fg: #e0def4;
-    --muted: #6e6a86;
-    --border: #403d52;
-    --code-bg: #1f1d2e;
-    --table-header-bg: #26233a;
+    --bg: #1b1a17;
+    --fg: #e8e7e2;
+    --muted: #8e8d87;
+    --border: #2f2e2a;
+    --code-bg: #23221f;
+    --table-header-bg: #2a2925;
     --scrollbar-thumb: #6c6c6c;
-    --scrollbar-track: #26233a;
+    --scrollbar-track: #23221f;
 }
 {{ end -}}
 
