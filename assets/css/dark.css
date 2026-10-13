@@ -1,4 +1,4 @@
-{{- /* Rosé Pine (dark) / Rosé Pine Dawn (light) — same palette as syntax.css. */ -}}
+{{- /* Rosé Pine (dark) / Cursor-like neutrals (light). */ -}}
 {{ $dark := .Site.Params.dark | default "auto" -}}
 {{ if eq $dark "on" -}}
 :root {
@@ -12,15 +12,16 @@
     --scrollbar-track: #26233a;
 }
 {{ else if eq $dark "auto" -}}
+/* Light: warm neutrals after cursor.com/blog (muted/border are the fg at 50%/10%, flattened). */
 :root {
-    --bg: #faf4ed;
-    --fg: #575279;
-    --muted: #9893a5;
-    --border: #dfdad9;
-    --code-bg: #fffaf3;
-    --table-header-bg: #f2e9e1;
-    --scrollbar-thumb: #9893a5;
-    --scrollbar-track: #f2e9e1;
+    --bg: #f7f7f4;
+    --fg: #26251e;
+    --muted: #8e8e89;
+    --border: #e2e2df;
+    --code-bg: #f2f1ed;
+    --table-header-bg: #ebeae5;
+    --scrollbar-thumb: #8e8e89;
+    --scrollbar-track: #f2f1ed;
 }
 
 /* System preference, unless the visitor picked light explicitly via the toggle. */
