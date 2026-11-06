@@ -94,6 +94,11 @@
         margin: -2rem 0 1rem;
         display: block;
       }
+      /* 100vw includes the vertical scrollbar, so the header overflows by
+         its width and adds a horizontal scrollbar. Body overflow propagates
+         to the viewport, so this only stops page-level horizontal scroll;
+         the sticky TOC keeps working. */
+      body { overflow-x: clip; }
       .header-inner {
         display: flex;
         justify-content: space-between;
