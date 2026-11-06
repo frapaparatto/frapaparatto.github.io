@@ -7,16 +7,18 @@
     <div class="content">
       {{ partial "header.html" . }}
       {{ .Content }}
-      {{ if gt (len ( where .Site.RegularPages "Section" "posts" )) 0 }}
-      <h2>Latest Post</h2>
-      <section>
-        {{ range (first .Site.Params.items (where .Site.RegularPages "Section" "posts" ).ByDate.Reverse) }}
-          <p>
-            <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time>&nbsp;
-            <a href="{{ .Permalink }}">{{ .Title }}</a>
-          <p>
+      {{ $pages := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
+      {{ with $pages }}
+      <h2 class="latest-title">Latest</h2>
+      <ul class="latest">
+        {{ range first $.Site.Params.items .ByDate.Reverse }}
+        <li>
+          <time class="g time" datetime="{{ dateFormat "2006-01-02" .Date }}">{{ dateFormat "2006-01-02" .Date }}</time>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <span class="latest-section">{{ .Section }}</span>
+        </li>
         {{ end }}
-      </section>
+      </ul>
       {{ end }}
     </div>
   </main>

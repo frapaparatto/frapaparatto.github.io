@@ -194,6 +194,32 @@
       .toc li > ol { grid-column: 2; }
       .toc li::before { content: counter(toc) ". "; color: var(--muted); }
       .toc ol ol li::before { content: counters(toc, ".") " "; }
+      /* Home "Latest": one list across sections, centered as a block with
+         date/title/section kept in aligned columns (subgrid), so centering
+         doesn't leave ragged rows. */
+      .latest-title { text-align: center; }
+      .latest {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        width: fit-content;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 0.6em 1em;
+      }
+      .latest li {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: subgrid;
+        align-items: baseline;
+      }
+      .latest-section { color: var(--muted); font-size: 0.85em; }
+      /* On phones a third column squeezes titles; drop the label under it. */
+      @media (max-width: 600px) {
+        .latest { grid-template-columns: auto 1fr; }
+        .latest-section { grid-column: 2; }
+      }
     </style>
 
     {{ if .IsHome -}}
@@ -209,7 +235,7 @@
     }
     </script>
     {{ else if .IsPage }}
-    {{ $author :=  or (.Params.author) (.Site.Author.name) }}
+    {{ $author :=  or (.Params.author) (.Site.Params.author) }}
     {{ $org_name :=  .Site.Title }}
     <script type="application/ld+json">
     {
