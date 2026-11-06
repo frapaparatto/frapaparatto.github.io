@@ -1,7 +1,7 @@
 baseURL = "https://frapaparatto.dev"
 title = "fra@dev:~#"
 theme = "maverick"
-languageCode = "en-US"
+locale = "en-US"
 enableInlineShortcodes = true
 pygmentsCodeFences = true
 pygmentsUseClasses = true
