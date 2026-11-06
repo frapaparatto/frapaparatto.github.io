@@ -153,6 +153,47 @@
       .content section > p:first-child {
         text-align: center;
       }
+      /* Post TOC in the left gutter, outside the centered column so the
+         article doesn't move. The aside spans the article's height and the
+         nav sticks inside it. Separated by space only, no border. Hidden
+         when the gutter is too narrow to hold it. */
+      .post-body { position: relative; }
+      .toc { display: none; }
+      @media (min-width: 1200px) {
+        .toc {
+          display: block;
+          position: absolute;
+          /* Drops the first entry to the title's first line, which sits
+             lower in its box (padding + taller line-height). */
+          top: 0.75rem;
+          bottom: 0;
+          right: 100%;
+          width: 13rem;
+          margin-right: 3rem;
+          font-size: 12px;
+          line-height: 1.4;
+        }
+        .toc nav {
+          position: sticky;
+          top: 2rem;
+          max-height: calc(100vh - 4rem);
+          overflow-y: auto;
+        }
+      }
+      /* "1." for sections, "1.1" for subsections, via CSS counters. */
+      .toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+      .toc ol ol { font-size: 11px; }
+      /* Grid keeps wrapped titles aligned past the number (hanging indent). */
+      .toc li {
+        counter-increment: toc;
+        margin: 0.5em 0;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 0.4em;
+      }
+      .toc li > ol { grid-column: 2; }
+      .toc li::before { content: counter(toc) ". "; color: var(--muted); }
+      .toc ol ol li::before { content: counters(toc, ".") " "; }
     </style>
 
     {{ if .IsHome -}}
