@@ -67,3 +67,8 @@ pygmentsUseClasses = true
 [outputs]
   home = ["HTML", "RSS", "JSON"]
   section = ["HTML"]
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+  ordered = true
