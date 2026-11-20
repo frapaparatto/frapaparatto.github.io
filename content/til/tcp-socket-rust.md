@@ -1,5 +1,5 @@
 ---
-title: "Sockets and TCP, from the system calls to Rust's `TcpListener`"
+title: "Sockets and TCP, from system calls to Rust's `TcpListener`"
 date: "2026-11-20"
 description: "What the kernel does when a Rust program binds, accepts and reads from a TCP socket, seen with strace."
 tags:
