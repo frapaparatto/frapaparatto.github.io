@@ -59,7 +59,7 @@ pygmentsUseClasses = true
 
 [markup.highlight]
   noClasses = false
-  style = "rose-pine-dawn"
+  style = "kanagawa-lotus"
 
 [taxonomies]
   tag = "tags"
